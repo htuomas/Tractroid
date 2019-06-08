@@ -32,7 +32,6 @@ void setup(){
 
 void draw() {
   moonlander.update();
-  background(0,0,0);
   int time = millis();
   double bgcolor = moonlander.getValue("background");
   ballSizeCoeff = (float)moonlander.getValue("ballSizeCoeff");
