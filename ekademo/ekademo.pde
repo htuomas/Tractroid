@@ -53,6 +53,9 @@ void draw() {
   //  doRing(NumberOfBalls(i), 500 / i , -(i - 2) * 15, time);
   //}
   //println(frameRate);
+  if(ballSizeCoeff == 0){
+    exit();
+  }
 }
 
 float getSpacingByRingDistance(int distance) {
