@@ -9,6 +9,9 @@ float spacingCoeff = 0.8;
 float offsetCoeff = 0.5;
 float ballSizeCoeff;
 int timer;
+float wobbleX;
+float wobbleZ;
+
 void settings() {
   size(WIDTH, HEIGHT, P3D);
 
@@ -18,7 +21,6 @@ void setup(){
   colorMode(HSB, 255);
   background(0,0,0);
   noiseSeed(0);
-  randomSeed(0);
   moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
   moonlander.start();
 }
@@ -30,6 +32,8 @@ void draw() {
   double bgcolor = moonlander.getValue("background");
   ballSizeCoeff = (float)moonlander.getValue("ballSizeCoeff");
   timer = moonlander.getIntValue("rowNr");
+  wobbleX = moonlander.getIntValue("wobbleX");
+  wobbleZ = moonlander.getIntValue("wobbleZ");
   
   background((int) bgcolor);
 
@@ -75,6 +79,9 @@ void doRing(int ballsOnRing, float spacing, float offset, int time){
   //int size = ;
   //float coefficient = (sin(TAU/size)+1)/(1+1)*(2-0.1)+0.1;
   int brightness = (int)((ballSizeCoeff-1) /(3-1)*(255-200)+200);
+  
+  rotateX(radians(wobbleX));
+  rotateZ(radians(wobbleZ));
   
   for(int r=0; r<ballsOnRing; r++){
     int hueManatee = int((noise(time, millis())*256));
