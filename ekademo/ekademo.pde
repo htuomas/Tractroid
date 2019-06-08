@@ -15,18 +15,20 @@ void draw() {
   translate(WIDTH/2, HEIGHT/2, 0);
   noStroke();
   lights();
-  
-  //sphere(10);
-  
-  int ballsOnRing = 10;
-  int spacing = 50;
-  int offset = 80;
-  
-  translate(offset, offset, offset);
+   
+   translate(0, 50, 0);
+   DoRing(10, 20, -50);
+   DoRing(20, 40, 0);
+   DoRing(10, 20, 50);
+}
+
+void DoRing(int ballsOnRing, int spacing, int offset){
+  translate(0, offset, 0);
   for(int r=0; r<ballsOnRing; r++){
     sphere(10);
     translate(spacing*-1, spacing*-1, spacing*-1);
-    rotateX(TWO_PI/10);
+    rotateY(TWO_PI/ballsOnRing);
     translate(spacing,spacing,spacing);
   }
+  translate(0, -1*offset, 0);
 }
