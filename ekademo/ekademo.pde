@@ -18,14 +18,20 @@ void setup(){
 
 void draw() {
   moonlander.update();
+  double bgcolor = moonlander.getValue("background");
+
   translate(WIDTH/2, HEIGHT/2, 0);
   noStroke();
   lights();
    
    translate(0, 50, 0);
+   DoRing(1, 0, -155);
+   DoRing(1, 0, -95);
    DoRing(10, 20, -50);
-   DoRing(20, 40, 0);
+   DoRing(30, 55, 0);
    DoRing(10, 20, 50);
+   DoRing(1, 0, 95);
+   DoRing(1, 0, 155);
 }
 
 void DoRing(int ballsOnRing, int spacing, int offset){
@@ -33,9 +39,9 @@ void DoRing(int ballsOnRing, int spacing, int offset){
   translate(0, offset, 0);
   for(int r=0; r<ballsOnRing; r++){
     sphere(10);
-    translate(spacing*-1, spacing*-1, spacing*-1);
+    translate(0, spacing*-1, spacing*-1);
     rotateY(TWO_PI/ballsOnRing);
-    translate(spacing,spacing,spacing);
+    translate(0,spacing,spacing);
   }
   popMatrix();
 }
