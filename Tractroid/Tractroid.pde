@@ -56,12 +56,7 @@ void draw() {
   doRing(10, getSpacingByRingDistance(2), 95*offsetCoeff, timer);
   doRing(5, getSpacingByRingDistance(3), 130*offsetCoeff, timer);
   doRing(1, getSpacingByRingDistance(4), 155*offsetCoeff, timer);
-   
-  //println(frameRate);
-  if(ballSizeCoeff == 0){
-    //exit();
-  }
-  
+     
   popMatrix();
   if (timer < 34) {
     translate(550, 100);
@@ -81,8 +76,7 @@ void draw() {
     text("code", 360, 0, 0);
     //text("-", 400, 40, 0);
     text("Jeccu & Silenna", 250, 50, 0);
-    
-    
+     
     text("music", -500, 810, 0);
     //text("-", -500, 860, 0);
     textFont(font, 30);
@@ -93,6 +87,10 @@ void draw() {
     
   }
   
+    //println(frameRate);
+  if(timer == 1330){
+    exit();
+  }
 }
 
 float getSpacingByRingDistance(int distance) {
