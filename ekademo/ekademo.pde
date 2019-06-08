@@ -15,7 +15,10 @@ void settings() {
 }
 
 void setup(){
+  colorMode(HSB, 255);
   background(0,0,0);
+  noiseSeed(0);
+  randomSeed(0);
   moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
   moonlander.start();
 }
@@ -49,7 +52,7 @@ void draw() {
   //  doRing(NumberOfBalls(i), 500 / i ,  (i - 2) * 15, time);
   //  doRing(NumberOfBalls(i), 500 / i , -(i - 2) * 15, time);
   //}
-  println(frameRate);
+  //println(frameRate);
 }
 
 float getSpacingByRingDistance(int distance) {
@@ -68,8 +71,12 @@ void doRing(int ballsOnRing, float spacing, float offset, int time){
   translate(0, offset, 0);
   //int size = ;
   //float coefficient = (sin(TAU/size)+1)/(1+1)*(2-0.1)+0.1;
+  int brightness = (int)((ballSizeCoeff-1) /(3-1)*(255-200)+200);
   
   for(int r=0; r<ballsOnRing; r++){
+    int hueManatee = int((noise(time, millis())*256));
+    println("color: " + hueManatee);
+    fill(hueManatee, brightness, brightness);
     sphere(5*ballSizeCoeff);
     translate(0, spacing*-1, spacing*-1);
     rotateY(TAU/ballsOnRing *millis()/840);
