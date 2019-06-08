@@ -5,8 +5,8 @@ Moonlander moonlander;
 int HEIGHT = 480;
 int WIDTH = 640;
 
-float spacingCoeff = 0.8;
-float offsetCoeff = 0.5;
+float spacingCoeff = 3.2;
+float offsetCoeff = 2;
 float ballSizeCoeff;
 int timer;
 float wobbleX;
@@ -14,15 +14,19 @@ float wobbleZ;
 
 void settings() {
   size(WIDTH, HEIGHT, P3D);
+//  fullScreen(P3D);
 
 }
 
 void setup(){
+  ballSizeCoeff = 1;
   colorMode(HSB, 255);
+  noCursor();
   background(0,0,0);
   noiseSeed(0);
   moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
   moonlander.start();
+  
 }
 
 void draw() {
@@ -37,7 +41,7 @@ void draw() {
   
   background((int) bgcolor);
 
-  translate(WIDTH/2, HEIGHT/2, 0);
+  translate(width/2, height/2, 0);
   noStroke();
   lights();
    
@@ -58,7 +62,7 @@ void draw() {
   //}
   //println(frameRate);
   if(ballSizeCoeff == 0){
-    exit();
+    //exit();
   }
 }
 
@@ -87,7 +91,7 @@ void doRing(int ballsOnRing, float spacing, float offset, int time){
     int hueManatee = int((noise(time, millis())*256));
     println("color: " + hueManatee);
     fill(hueManatee, brightness, brightness);
-    sphere(5*ballSizeCoeff);
+    sphere(20*ballSizeCoeff);
     translate(0, spacing*-1, spacing*-1);
     rotateY(TAU/ballsOnRing *millis()/840);
     translate(0,spacing,spacing);
