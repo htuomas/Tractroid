@@ -1,3 +1,7 @@
+import moonlander.library.*;
+import ddf.minim.*;
+
+Moonlander moonlander;
 int HEIGHT = 480;
 int WIDTH = 640;
 
@@ -8,10 +12,12 @@ void settings() {
 
 void setup(){
   background(0,0,0);
-
+  moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
+  moonlander.start();
 }
 
 void draw() {
+  moonlander.update();
   translate(WIDTH/2, HEIGHT/2, 0);
   noStroke();
   lights();
