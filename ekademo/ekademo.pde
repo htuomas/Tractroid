@@ -23,6 +23,7 @@ void draw() {
 }
 
 void DoRing(int ballsOnRing, int spacing, int offset){
+  pushMatrix();
   translate(0, offset, 0);
   for(int r=0; r<ballsOnRing; r++){
     sphere(10);
@@ -30,5 +31,5 @@ void DoRing(int ballsOnRing, int spacing, int offset){
     rotateY(TWO_PI/ballsOnRing);
     translate(spacing,spacing,spacing);
   }
-  translate(0, -1*offset, 0);
+  popMatrix();
 }
