@@ -6,30 +6,31 @@ int HEIGHT = 480;
 int WIDTH = 640;
 
 PFont font;
-
-float spacingCoeff = 0.8;
-float offsetCoeff = 0.5;
+float spacingCoeff = 3.2;
+float offsetCoeff = 2;
 float ballSizeCoeff;
 int timer;
 float wobbleX;
 float wobbleZ;
 
 void settings() {
-  size(WIDTH, HEIGHT, P3D);
+  //size(WIDTH, HEIGHT, P3D);
+  fullScreen(P3D);
 }
 
 void setup(){
+  ballSizeCoeff = 1;
   colorMode(HSB, 255);
+  noCursor();
   background(0,0,0);
   noiseSeed(0);
   moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
   moonlander.start();
   font = createFont("AveriaSansLibre-Regular.ttf", 32);
-  textFont(font, 32);
+  textFont(font, 50);
 }
 
 void draw() {
-  
   moonlander.update();
   background(0,0,0);
   int time = millis();
@@ -41,10 +42,11 @@ void draw() {
   
   background((int) bgcolor);
 
-  translate(WIDTH/2, HEIGHT/2, 0);
+  pushMatrix();
+  translate(width/2, height/2, 0);
   noStroke();
   lights();
-   
+
   translate(0, 50, 0);
   doRing(1, getSpacingByRingDistance(-4), -155*offsetCoeff, timer);
   doRing(5, getSpacingByRingDistance(-3), -130*offsetCoeff, timer);
@@ -56,18 +58,41 @@ void draw() {
   doRing(5, getSpacingByRingDistance(3), 130*offsetCoeff, timer);
   doRing(1, getSpacingByRingDistance(4), 155*offsetCoeff, timer);
    
-  //for (int i = 2; i<10; i++) {
-  //  doRing(NumberOfBalls(i), 500 / i ,  (i - 2) * 15, time);
-  //  doRing(NumberOfBalls(i), 500 / i , -(i - 2) * 15, time);
-  //}
   //println(frameRate);
   if(ballSizeCoeff == 0){
-    exit();
+    //exit();
   }
   
+  popMatrix();
   if (timer < 34) {
-    text("Tractroid by Siils @ Graffathon 2019", -10, -10, 0);
-  } 
+    translate(550, 100);
+    text("Tractroid by Siils @ Graffathon 2019", 0, 0, 0);
+  }
+  
+  if ((timer >= 500) && (timer < 720)) {
+    translate(550, 80);
+    text("jumalauta, adapt, paraguay", 120, 0, 0);
+    //text("-", 400, 40, 0);
+    text("you've been an inspiration, keep it up!", 20, 50, 0);
+    text("thx tlax", 330, 100, 0);
+  }
+  
+  if (timer > 1276) {
+    translate(550, 80);
+    text("code", 360, 0, 0);
+    text("-", 400, 40, 0);
+    text("Jeccu & Silenna", 250, 80, 0);
+    
+    
+    text("music", 350, 810, 0);
+    text("-", 400, 860, 0);
+    textFont(font, 30);
+    text("\"Club Diver\" Kevin MacLeod (incompetech.com)", 100, 890, 0);
+    text("Licensed under Creative Commons: By Attribution 3.0 License", -20, 920, 0);
+    text("http://creativecommons.org/licenses/by/3.0/", 120, 950, 0);
+    textFont(font, 50);
+    
+  }
   
 }
 
@@ -76,7 +101,6 @@ float getSpacingByRingDistance(int distance) {
   if (distance == 0) {
     spacing = 145;  
   } else {
-    //spacing = 1/(log(abs(distance)) + 1) * 100;
     spacing = 1/(sq(abs(distance)) + 1) * 100;
   }
   return spacing * spacingCoeff;
@@ -96,7 +120,7 @@ void doRing(int ballsOnRing, float spacing, float offset, int time){
     int hueManatee = int((noise(time, millis())*256));
     //println("color: " + hueManatee);
     fill(hueManatee, brightness, brightness);
-    sphere(5*ballSizeCoeff);
+    sphere(20*ballSizeCoeff);
     translate(0, spacing*-1, spacing*-1);
     rotateY(TAU/ballsOnRing *millis()/840);
     translate(0,spacing,spacing);
