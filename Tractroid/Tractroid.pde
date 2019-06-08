@@ -69,7 +69,7 @@ void draw() {
     text("Tractroid by Siils @ Graffathon 2019", 0, 0, 0);
   }
   
-  if ((timer >= 500) && (timer < 600)) {
+  if ((timer >= 720) && (timer < 792)) {
     translate(550, 80);
     text("jumalauta, adapt, paraguay", 120, 0, 0);
     //text("-", 400, 40, 0);
