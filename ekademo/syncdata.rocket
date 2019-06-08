@@ -1,0 +1,7 @@
+<sync rows="128">
+	<tracks>
+		<track name="background_red"/>
+		<track name="background"/>
+	</tracks>
+	<bookmarks/>
+</sync>
