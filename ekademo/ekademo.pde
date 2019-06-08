@@ -5,6 +5,8 @@ Moonlander moonlander;
 int HEIGHT = 480;
 int WIDTH = 640;
 
+PFont font;
+
 float spacingCoeff = 0.8;
 float offsetCoeff = 0.5;
 float ballSizeCoeff;
@@ -14,7 +16,6 @@ float wobbleZ;
 
 void settings() {
   size(WIDTH, HEIGHT, P3D);
-
 }
 
 void setup(){
@@ -23,9 +24,12 @@ void setup(){
   noiseSeed(0);
   moonlander = Moonlander.initWithSoundtrack(this, "Club Diver.mp3", 140, 4);
   moonlander.start();
+  font = createFont("AveriaSansLibre-Regular.ttf", 32);
+  textFont(font, 32);
 }
 
 void draw() {
+  
   moonlander.update();
   background(0,0,0);
   int time = millis();
@@ -60,6 +64,11 @@ void draw() {
   if(ballSizeCoeff == 0){
     exit();
   }
+  
+  if (timer < 34) {
+    text("Tractroid by Siils @ Graffathon 2019", -10, -10, 0);
+  } 
+  
 }
 
 float getSpacingByRingDistance(int distance) {
@@ -85,7 +94,7 @@ void doRing(int ballsOnRing, float spacing, float offset, int time){
   
   for(int r=0; r<ballsOnRing; r++){
     int hueManatee = int((noise(time, millis())*256));
-    println("color: " + hueManatee);
+    //println("color: " + hueManatee);
     fill(hueManatee, brightness, brightness);
     sphere(5*ballSizeCoeff);
     translate(0, spacing*-1, spacing*-1);
