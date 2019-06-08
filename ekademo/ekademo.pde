@@ -25,13 +25,18 @@ void draw() {
   lights();
    
    translate(0, 50, 0);
-   DoRing(1, 0, -155);
-   DoRing(1, 0, -95);
-   DoRing(10, 20, -50);
-   DoRing(30, 55, 0);
-   DoRing(10, 20, 50);
-   DoRing(1, 0, 95);
-   DoRing(1, 0, 155);
+   //DoRing(1, 0, -155);
+   //DoRing(1, 0, -95);
+   //DoRing(10, 20, -50);
+   //DoRing(30, 55, 0);
+   //DoRing(10, 20, 50);
+   //DoRing(1, 0, 95);
+   //DoRing(1, 0, 155);
+   
+   for (int i = 2; i<80; i++) {
+     DoRing(NumberOfBalls(i), 500 / i ,  (i - 2) * 15);
+     DoRing(NumberOfBalls(i), 500 / i , -(i - 2) * 15);
+   }
 }
 
 void DoRing(int ballsOnRing, int spacing, int offset){
@@ -44,4 +49,8 @@ void DoRing(int ballsOnRing, int spacing, int offset){
     translate(0,spacing,spacing);
   }
   popMatrix();
+}
+
+int NumberOfBalls(int index) {
+  return int(1/(pow(index, 2) - index) * 2000) + 3;
 }
