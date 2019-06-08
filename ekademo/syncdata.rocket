@@ -1,7 +1,17 @@
-<sync rows="128">
+<sync rows="1316">
 	<tracks>
-		<track name="background_red"/>
+		<track name="rowNr">
+			<key interpolation="1" row="0" value="1"/>
+			<key interpolation="0" row="1315" value="1316"/>
+		</track>
 		<track name="background"/>
+		<track name="ballSizeCoeff">
+			<key interpolation="0" row="0" value="1"/>
+			<key interpolation="3" row="32" value="3"/>
+			<key interpolation="0" row="48" value="1"/>
+			<key interpolation="3" row="96" value="3"/>
+			<key interpolation="0" row="112" value="1"/>
+		</track>
 	</tracks>
 	<bookmarks/>
 </sync>
